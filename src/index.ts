@@ -4,26 +4,28 @@ const input2 = document.getElementById('num2') as HTMLInputElement;
 const btnSum =document.getElementById('btnSum') as HTMLElement;
 const btnSub =document.getElementById('btnSub') as HTMLElement;
 
+type Operations = "SUM" | "SUB";
 
 interface Values{
+    tipo: Operations;
     a:number;
     b:number;
 }
 
-/*function sum (value:Values): number{
-    return value.a + value.b;
-}*/
-//OR
-function sum ({a,b}:Values):number{
-    return a +b;
+
+function operations ({tipo, a, b}:Values):number{
+    if (tipo ==="SUM"){
+        return a+b;
+    }else{
+        return a-b;
+    }
 }
 
-function sub({a,b}:Values):number{
-    return a - b;
-}
+
 
 btnSum.addEventListener('click', function(){
-    const result = sum({
+    const result = operations({
+        tipo: "SUM",
         a: Number(input1.value),
         b: Number(input2.value),
     });
@@ -31,7 +33,8 @@ btnSum.addEventListener('click', function(){
 })
 
 btnSub.addEventListener('click', function(){
-    const result = sub({
+    const result = operations({
+        tipo: "SUB",
         a: Number(input1.value),
         b: Number(input2.value),
     });
