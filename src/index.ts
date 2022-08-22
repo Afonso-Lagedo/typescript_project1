@@ -4,20 +4,36 @@ const input2 = document.getElementById('num2') as HTMLInputElement;
 const btnSum =document.getElementById('btnSum') as HTMLElement;
 const btnSub =document.getElementById('btnSub') as HTMLElement;
 
-function sum (a:number, b:number){
-    return a + b;
+
+interface Values{
+    a:number;
+    b:number;
 }
 
-function sub(a:number, b:number){
+/*function sum (value:Values): number{
+    return value.a + value.b;
+}*/
+//OR
+function sum ({a,b}:Values):number{
+    return a +b;
+}
+
+function sub({a,b}:Values):number{
     return a - b;
 }
 
 btnSum.addEventListener('click', function(){
-    const result = sum(Number(input1.value),Number(input2.value));
+    const result = sum({
+        a: Number(input1.value),
+        b: Number(input2.value),
+    });
     console.log(result) 
 })
 
 btnSub.addEventListener('click', function(){
-    const result = sub(Number(input1.value),Number(input2.value));
+    const result = sub({
+        a: Number(input1.value),
+        b: Number(input2.value),
+    });
     console.log(result) 
 })
